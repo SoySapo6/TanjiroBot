@@ -60,7 +60,7 @@ const downloadAudio = async (conn, m, video, title) => {
 
     if (!api?.status || !api.result?.download) {
       console.warn("❌ MayTube falló, usando Sylphy...");
-      const res = await fetch(`https://api.sylphy.xyz/download/ytmp3?apikey=sylphy-5886&url=${encodeURIComponent(video.url)}`);
+      const res = await fetch(`https://nightapi.is-a.dev/api/ytaudio?url=${encodeURIComponent(video.url)}&format=mp3`);
       const data = await res.json();
       if (!data?.url) throw new Error("Sylphy tampoco devolvió un enlace válido");
       api = {
@@ -95,7 +95,7 @@ const downloadVideo = async (conn, m, video, title) => {
 
     if (!api?.url) {
       console.warn("❌ MayTube falló, usando Sylphy...");
-      const res = await fetch(`https://api.sylphy.xyz/download/ytmp4?apikey=sylphy-5886&url=${encodeURIComponent(video.url)}`);
+      const res = await fetch(`https://nightapi.is-a.dev/api/ytvideo?url=${encodeURIComponent(video.url)}&format=mp4&quality=720p`);
       const data = await res.json();
       if (!data?.url) throw new Error("Sylphy tampoco devolvió un enlace válido");
       api = {
